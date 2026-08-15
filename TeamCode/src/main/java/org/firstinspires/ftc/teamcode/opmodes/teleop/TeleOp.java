@@ -33,7 +33,7 @@ public class TeleOp extends CommandOpMode {
         GamepadEx aaryan = new GamepadEx(gamepad2);
 
         // Aaryan controls
-        rishi.getGamepadButton(GamepadKeys.Button.X)
+        rishi.getGamepadButton(GamepadKeys.Button.X)// square
                 .whenPressed(prime);
 
         rishi.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER)
@@ -41,11 +41,11 @@ public class TeleOp extends CommandOpMode {
 
         rishi.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER)
                 .whenPressed(shootWithIntake);
-        rishi.getGamepadButton(GamepadKeys.Button.Y)
+        rishi.getGamepadButton(GamepadKeys.Button.Y) // triangle
                 .whenPressed(new InstantCommand(() -> {
                     Mosby.reset();
                 }) );
-        rishi.getGamepadButton(GamepadKeys.Button.B)
+        rishi.getGamepadButton(GamepadKeys.Button.B)//circle
                 .whenPressed(new InstantCommand(() -> {
                     if(Storage.alliance == Mosby.Alliance.BLUE || Storage.alliance == Mosby.Alliance.BLUESQ) {
                         Pose b = new Pose(135.5, 7.8125, Math.toRadians(90));

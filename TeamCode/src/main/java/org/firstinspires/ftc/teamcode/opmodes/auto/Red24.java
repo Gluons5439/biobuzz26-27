@@ -108,6 +108,7 @@ public class Red24 extends CommandOpMode {
                 Mosby.shootWithIntake(),
                 Mosby.reset(),
                 new InstantCommand(() ->Mosby.shooter.autoPower(false,false)),
+                new InstantCommand(() ->Mosby.turretOff()),
                 new FollowPathCommand(Mosby.drivetrain.follower, paths2.leave)
 
         ));

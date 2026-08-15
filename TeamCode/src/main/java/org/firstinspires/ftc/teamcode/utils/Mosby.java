@@ -144,6 +144,14 @@ Mosby {
 
         });
     }
+    public static InstantCommand turretOff() {
+        return new InstantCommand(() -> {
+            turret.AUTOenableAim = false;
+
+
+        });
+    }
+
     public static InstantCommand reset1() {
         return new InstantCommand(() -> {
             turret.enableAim = false;

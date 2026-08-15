@@ -90,6 +90,7 @@ public class RedOPT12 extends CommandOpMode {
                     Mosby.intake.setMinPower(0);
                 }),
                 new InstantCommand(() ->Mosby.shooter.autoPower(false,false)),
+                new InstantCommand(() ->Mosby.turretOff()),
                 new FollowPathCommand(Mosby.drivetrain.follower, paths.Closepark)
         ));
     }
