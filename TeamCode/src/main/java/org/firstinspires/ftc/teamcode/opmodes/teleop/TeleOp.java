@@ -43,7 +43,7 @@ public class TeleOp extends CommandOpMode {
                 .whenPressed(shootWithIntake);
         rishi.getGamepadButton(GamepadKeys.Button.Y) // triangle
                 .whenPressed(new InstantCommand(() -> {
-                    Mosby.reset();
+                    Mosby.reset1();
                 }) );
         rishi.getGamepadButton(GamepadKeys.Button.B)//circle
                 .whenPressed(new InstantCommand(() -> {
@@ -74,6 +74,7 @@ public class TeleOp extends CommandOpMode {
         // Redundant shooter stop: persist a zero-RPM idle target and cut power immediately.
         rishi.getGamepadButton(GamepadKeys.Button.DPAD_DOWN).whenPressed(new InstantCommand(() -> {
             Mosby.shooter.runIdle(0);
+            Mosby.shooter.closeStopper();
             Mosby.shooter.setPower(0);
         }));
 

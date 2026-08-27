@@ -83,6 +83,7 @@ public class BaryonsAutoRedV2 extends CommandOpMode {
                 new WaitUntilCommand(() -> Mosby.shooter.controller.atSetPoint()),
                 Mosby.shootWithIntake(),
                 Mosby.reset(),
+                new InstantCommand(() ->Mosby.turretOff()),
 /**
  new InstantCommand(() -> Mosby.intake.setPower(1)),
  new FollowPathCommand(Mosby.drivetrain.follower, paths.intakepgp1),
