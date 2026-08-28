@@ -147,6 +147,7 @@ Mosby {
     public static InstantCommand turretOff() {
         return new InstantCommand(() -> {
             turret.AUTOenableAim = false;
+            turret.enableAim = false;
 
 
         });
