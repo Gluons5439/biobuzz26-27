@@ -26,7 +26,6 @@ public class FarBlue extends CommandOpMode {
         schedule(new SequentialCommandGroup(
                 Mosby.prime(),
                 new WaitUntilCommand(() -> Mosby.shooter.controller.atSetPoint()),
-                new WaitCommand(100),
                 Mosby.shootWithIntake(),
                 Mosby.reset(),
 
