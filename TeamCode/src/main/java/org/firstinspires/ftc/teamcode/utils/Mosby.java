@@ -123,7 +123,8 @@ Mosby {
         CommandScheduler.getInstance().registerSubsystem(drivetrain, turret, intake, shooter);
 
         CommandScheduler.getInstance().schedule(reset1());
-        turret.enableAim = false;
+        turret.enableAim = false
+        ;
 
     }
 

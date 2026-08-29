@@ -39,7 +39,7 @@ public class Turret extends SubsystemBase {
         motor.setZeroPowerBehavior(Motor.ZeroPowerBehavior.FLOAT);
         motor.setInverted(false);
         controller.setTolerance(tolerance);
-        homePos = 0;
+        homePos = Storage.turretAngle;
     }
 
     public double getAngle(){
@@ -106,8 +106,8 @@ public class Turret extends SubsystemBase {
         double targetAngle = Math.atan2(deltaY, deltaX);
 
         double robotAngle = Mosby.drivetrain.follower.getHeading();
-        return wrapToPi(targetAngle-robotAngle + homePos); // homePos for Buisness but targetAngle-robotAngle + homePos For actual
-    }
+        return wrapToPi(targetAngle-robotAngle ); // homePos for Buisness but targetAngle-robotAngle + homePos For actual
+    }// HOME POS ABOVE ADDED+
 
 
     public static double wrapToPi(double radians) {

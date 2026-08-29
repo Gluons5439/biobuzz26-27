@@ -93,7 +93,6 @@ public class FarBlue extends CommandOpMode {
                 Mosby.reset(),
 
                 new InstantCommand(() ->Mosby.shooter.autoPower(false,false)),
-                new InstantCommand(() ->Mosby.turretOff()),
                 // turn everything off
                 new FollowPathCommand(Mosby.drivetrain.follower, paths.park34)
 

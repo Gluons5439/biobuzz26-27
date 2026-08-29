@@ -12,6 +12,7 @@ import com.seattlesolvers.solverslib.gamepad.GamepadKeys;
 
 import org.firstinspires.ftc.teamcode.utils.Mosby;
 import org.firstinspires.ftc.teamcode.utils.Storage;
+import org.firstinspires.ftc.teamcode.utils.subsystems.Turret;
 
 @com.qualcomm.robotcore.eventloop.opmode.TeleOp
 @Configurable
@@ -49,15 +50,24 @@ public class TeleOp extends CommandOpMode {
 
         rishi.getGamepadButton(GamepadKeys.Button.B)//circle
                 .whenPressed(new InstantCommand(() -> {
-                    if(Storage.alliance == Mosby.Alliance.BLUE || Storage.alliance == Mosby.Alliance.BLUESQ) {
+                    if(Storage.alliance == Mosby.Alliance.RED|| Storage.alliance == Mosby.Alliance.REDSQ ||Storage.alliance == Mosby.Alliance.REDCLOSE) {
                         Pose b = new Pose(135.5, 7.8125, Math.toRadians(90));
                         Mosby.drivetrain.follower.setPose(b);
                         Storage.pose = b;
+
+                        double dx = Mosby.goalShooter.getX() - b.getX();
+                        double dy = Mosby.goalShooter.getX() - b.getX();
+                        double targetAngle = Math.atan2(dy,dx);
+                        Mosby.turret.homePos = Turret.wrapToPi(targetAngle-b.getHeading());
 
                     } else {
                         Pose r = new Pose(8.5, 7.8125, Math.toRadians(90));
                         Mosby.drivetrain.follower.setPose(r);
                         Storage.pose = r;
+                        double dx = Mosby.goalShooter.getX() - r.getX();
+                        double dy = Mosby.goalShooter.getX() - r.getX();
+                        double targetAngle = Math.atan2(dy,dx);
+                        Mosby.turret.homePos = Turret.wrapToPi(targetAngle-r.getHeading());
                     }
                 }) );
         /**
