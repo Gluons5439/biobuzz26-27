@@ -118,6 +118,7 @@ Mosby {
 
         Mosby.drivetrain.follower.setStartingPose(matchState == MatchState.AUTO ? startPose : Storage.pose);
         Mosby.drivetrain.follower.update();
+        Storage.pose = Mosby.drivetrain.follower.getPose();
 
         CommandScheduler.getInstance().registerSubsystem(drivetrain, turret, intake, shooter);
 
