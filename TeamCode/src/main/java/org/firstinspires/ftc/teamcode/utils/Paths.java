@@ -96,11 +96,52 @@ public class Paths {
     public Pose CloseShootGPPPose = new Pose(53,100,Math.toRadians(220));
     public Pose CloseparkPose = new Pose(31, 72, Math.toRadians(180));
 
+    //Farzone finisher
+
+    public PathChain CollectHuman;
+    public PathChain shoot1;
+    public PathChain prepintake;
+    public PathChain collectintake;
+    public PathChain shoot2;
+    public PathChain reuturn1;
+    public PathChain shoot3;
+    public PathChain return2;
+    public PathChain shoot4;
+    public PathChain park34;
+
+    public Pose Collecthum = new Pose(10,9, Math.toRadians(180));
+    public Pose shoot = new Pose(48,14, Math.toRadians(180));
+    public Pose Collect1 = new Pose(40,36, Math.toRadians(180));
+    public Pose Control1 = new Pose(56,34, Math.toRadians(180));
+    public Pose Collect2 = new Pose(17,36, Math.toRadians(180));
+    public Pose return1  = new Pose(11,14, Math.toRadians(180));
+    public Pose returnsagain = new Pose(14,32, Math.toRadians(180));
+    public Pose Control2 = new Pose(40,32, Math.toRadians(180));
+    public Pose park344 = new Pose(40,25, Math.toRadians(180));
+
+
+
+
+
+
+
+
+
 
 
     public Paths(Follower follower, Mosby.Alliance alliance) {
         startPose = Mosby.startPose;
         if (alliance == Mosby.Alliance.RED || alliance == Mosby.Alliance.REDCLOSE) {
+            Collecthum = Collecthum.mirror();
+            shoot = shoot.mirror();
+            Collect1 = Collect1.mirror();
+            Control1 = Control1.mirror();
+            Collect2 = Collect2.mirror();
+            return1 = return1.mirror();
+            returnsagain = returnsagain.mirror();
+            Control2 = Control2.mirror();
+            park344 = park344.mirror();
+
             shootingPose = shootingPose.mirror();
             intakeGPP1Pose = intakeGPP1Pose.mirror();
             intakeGPP2Pose = intakeGPP2Pose.mirror();
@@ -141,6 +182,113 @@ public class Paths {
 
 
         }
+        //farzone demon ball
+        CollectHuman = follower
+                .pathBuilder()
+                .addPath(
+                        new BezierLine(startPose, Collecthum)
+                )
+                .setLinearHeadingInterpolation(startPose.getHeading(), Collecthum.getHeading())
+                //.setBrakingStrength(1.22)
+                .build();
+
+        shoot1 = follower
+                .pathBuilder()
+                .addPath(
+                        new BezierLine(Collecthum, shoot)
+                )
+                .setLinearHeadingInterpolation(Collecthum.getHeading(), shoot.getHeading())
+                //.setBrakingStrength(1.22)
+                .build();
+
+        prepintake = follower
+                .pathBuilder()
+                .addPath(
+                        new BezierCurve(shoot,Control1, Collect1)
+                )
+                .setLinearHeadingInterpolation(shoot.getHeading(), Collect1.getHeading())
+                //.setBrakingStrength(1.22)
+                .build();
+
+        collectintake = follower
+                .pathBuilder()
+                .addPath(
+                        new BezierLine(Collect1, Collect2)
+                )
+                .setLinearHeadingInterpolation(Collect1.getHeading(), Collect2.getHeading())
+                //.setBrakingStrength(1.22)
+                .build();
+        shoot2 = follower
+                .pathBuilder()
+                .addPath(
+                        new BezierLine(Collect2, shoot)
+                )
+                .setLinearHeadingInterpolation(Collect2.getHeading(), shoot.getHeading())
+                //.setBrakingStrength(1.22)
+                .build();
+
+        reuturn1 = follower
+                .pathBuilder()
+                .addPath(
+                        new BezierLine(shoot, return1)
+                )
+                .setLinearHeadingInterpolation(shoot.getHeading(), return1.getHeading())
+                //.setBrakingStrength(1.22)
+                .build();
+        shoot3 = follower
+                .pathBuilder()
+                .addPath(
+                        new BezierLine(return1, shoot)
+                )
+                .setLinearHeadingInterpolation(return1.getHeading(), shoot.getHeading())
+                //.setBrakingStrength(1.22)
+                .build();
+
+        return2 = follower
+                .pathBuilder()
+                .addPath(
+                        new BezierCurve(shoot,Control2, returnsagain)
+                )
+                .setLinearHeadingInterpolation(shoot.getHeading(), returnsagain.getHeading())
+                //.setBrakingStrength(1.22)
+                .build();
+
+        shoot4 = follower
+                .pathBuilder()
+                .addPath(
+                        new BezierLine(returnsagain, shoot)
+                )
+                .setLinearHeadingInterpolation(returnsagain.getHeading(), shoot.getHeading())
+                //.setBrakingStrength(1.22)
+                .build();
+        park34 = follower
+                .pathBuilder()
+                .addPath(
+                        new BezierLine(shoot, park344)
+                )
+                .setLinearHeadingInterpolation(shoot.getHeading(), park344.getHeading())
+                //.setBrakingStrength(1.22)
+                .build();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         // farzone 12 ball
 
         startToScore = follower
@@ -213,7 +361,7 @@ public class Paths {
         intakePPG1 = follower
                 .pathBuilder()
                 .addPath(
-                        new BezierCurve(shootingPose, intakePPG1Pose)
+                        new BezierLine(shootingPose, intakePPG1Pose)
                 )
                 .setBrakingStrength(3.5)
 //                .setTimeoutConstraint(500)
@@ -330,7 +478,7 @@ public class Paths {
         shootpgp = follower
                 .pathBuilder()
                 .addPath(
-                        new BezierCurve(intakepgp1Pose,shootpgpPose)
+                        new BezierLine(intakepgp1Pose,shootpgpPose)
                 )
                 .setBrakingStrength(3.5)
 //                .setTimeoutConstraint(500)

@@ -29,7 +29,7 @@ public class Blue24 extends CommandOpMode {
                 new FollowPathCommand(Mosby.drivetrain.follower, paths2.ScorePre),
                 Mosby.prime(),
                 new WaitUntilCommand(() -> Mosby.shooter.controller.atSetPoint()),
-                new WaitCommand(125),
+                new WaitCommand(100),
                 Mosby.shootWithIntake(),
                 Mosby.reset(),
 

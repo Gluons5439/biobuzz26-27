@@ -26,6 +26,7 @@ public class BaryonsAutoBlueV2 extends CommandOpMode {
                 new FollowPathCommand(Mosby.drivetrain.follower, paths.startToScore1),
                 Mosby.prime(),
                 new WaitUntilCommand(() -> Mosby.shooter.controller.atSetPoint()),
+                new WaitCommand(100),
                 Mosby.shootWithIntake(),
                 Mosby.reset(),
 
@@ -68,6 +69,9 @@ public class BaryonsAutoBlueV2 extends CommandOpMode {
                 new WaitUntilCommand(() -> Mosby.shooter.controller.atSetPoint()),
                 Mosby.shootWithIntake(),
                 Mosby.reset(),
+                new InstantCommand(()-> {
+                    Mosby.intake.setPower(1);
+                }),
                 new FollowPathCommand(Mosby.drivetrain.follower, paths.intakepgp1),
                 new WaitCommand(200),
                 new FollowPathCommand(Mosby.drivetrain.follower, paths.checkIntakepgp1),

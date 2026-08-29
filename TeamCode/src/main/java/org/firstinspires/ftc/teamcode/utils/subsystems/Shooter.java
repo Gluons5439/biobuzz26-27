@@ -102,20 +102,20 @@ public class Shooter extends SubsystemBase {
         controller.setSetPoint(0);
         // All shooter LUT outputs are physical RPM, matching the PIDF setpoint and encoder measurement.
         // These were converted from the old 28-tick motor velocity units.
-        lutVelocity.add(-1000, 2977);
-        lutVelocity.add(0, 2978.571);
-        lutVelocity.add(30.5, 3042.857);
-        lutVelocity.add(39.5, 3085.714);
-        lutVelocity.add(48.5, 3171.429);
-        lutVelocity.add(58.5, 3300.0);
-        lutVelocity.add(71.5, 3300.0);
-        lutVelocity.add(86.5, 3514.286);
-        lutVelocity.add(96.5, 3600.0);
-        lutVelocity.add(111.5, 3857.143);
-        lutVelocity.add(122.5, 4028.571);
-        lutVelocity.add(142.5, 4200.0);
-        lutVelocity.add(200, 4457.143);
-        lutVelocity.add(1000,4458);
+        lutVelocity.add(-1000, 2877);
+        lutVelocity.add(0, 2878.571);
+        lutVelocity.add(30.5, 2942.857);
+        lutVelocity.add(39.5, 2985.714);
+        lutVelocity.add(48.5, 3071.429);
+        lutVelocity.add(58.5, 3200.0);
+        lutVelocity.add(71.5, 3200.0);
+        lutVelocity.add(86.5, 3414.286);
+        lutVelocity.add(96.5, 3500.0);
+        lutVelocity.add(111.5, 3757.143);
+        lutVelocity.add(122.5, 3928.571);
+        lutVelocity.add(142.5, 4100.0);
+        lutVelocity.add(200, 4357.143);
+        lutVelocity.add(1000,4358);
 
         lutHood.add(-1000,0);
         lutHood.add(0, 0);

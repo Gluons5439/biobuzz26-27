@@ -37,7 +37,7 @@ Mosby {
         REDSQ
     }
 
-    public static final Pose BLUE_START_POSE = new Pose(64, 8, Math.toRadians(90));
+    public static final Pose BLUE_START_POSE = new Pose(56, 8, Math.toRadians(180));
     public static final Pose BLUE_SQ_START_POSE = new Pose(33, 135, Math.toRadians(90));
     public static final Pose RED_SQ_START_POSE = new Pose(144-BLUE_SQ_START_POSE.getX(), BLUE_SQ_START_POSE.getY(), Math.toRadians(90));
     public static final Pose CLOSE_BLUE_START_POSE = new Pose(21, 123, Math.toRadians(144));
