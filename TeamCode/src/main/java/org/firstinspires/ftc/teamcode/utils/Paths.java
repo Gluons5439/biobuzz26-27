@@ -117,7 +117,7 @@ public class Paths {
     public Pose return1  = new Pose(11,14, Math.toRadians(180));
     public Pose returnsagain = new Pose(14,32, Math.toRadians(180));
     public Pose Control2 = new Pose(40,32, Math.toRadians(180));
-    public Pose park344 = new Pose(40,25, Math.toRadians(180));
+    public Pose park344 = new Pose(40,25, Math.toRadians(170));
 
 
 

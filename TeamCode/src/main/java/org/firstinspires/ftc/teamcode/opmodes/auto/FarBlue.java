@@ -26,20 +26,22 @@ public class FarBlue extends CommandOpMode {
         schedule(new SequentialCommandGroup(
                 Mosby.prime(),
                 new WaitUntilCommand(() -> Mosby.shooter.controller.atSetPoint()),
+                new WaitCommand(100),
                 Mosby.shootWithIntake(),
-                Mosby.reset(),
+
 
                 // human player
                 new InstantCommand(() -> Mosby.intake.setPower(1)),
                 new InstantCommand(() -> Mosby.drivetrain.follower.setMaxPower(1)),
                 new FollowPathCommand(Mosby.drivetrain.follower, paths.CollectHuman),
+                new WaitCommand(100),
                 new InstantCommand(() -> Mosby.intake.setPower(0)),
 
                 // shoot 1
                 new FollowPathCommand(Mosby.drivetrain.follower, paths.shoot1),
                 Mosby.prime(),
                 new WaitUntilCommand(() -> Mosby.shooter.controller.atSetPoint()),
-                //new WaitCommand(100),
+                new WaitCommand(100),
                 Mosby.shootWithIntake(),
                 Mosby.reset(),
 
@@ -50,8 +52,7 @@ public class FarBlue extends CommandOpMode {
 
                 // collect intake
                 new FollowPathCommand(Mosby.drivetrain.follower, paths.collectintake),
-                new WaitCommand(60),
-                new InstantCommand(() -> Mosby.intake.setPower(0)),
+                new InstantCommand(() -> Mosby.intake.setPower(.5)),
 
                 // shoot 2
                 new FollowPathCommand(Mosby.drivetrain.follower, paths.shoot2),
@@ -59,7 +60,7 @@ public class FarBlue extends CommandOpMode {
                 new WaitUntilCommand(() -> Mosby.shooter.controller.atSetPoint()),
                 new WaitCommand(100),
                 Mosby.shootWithIntake(),
-                Mosby.reset(),
+
 
                 // return 1
                 new InstantCommand(() -> Mosby.intake.setPower(1)),
@@ -74,7 +75,7 @@ public class FarBlue extends CommandOpMode {
                 new WaitUntilCommand(() -> Mosby.shooter.controller.atSetPoint()),
                 new WaitCommand(100),
                 Mosby.shootWithIntake(),
-                Mosby.reset(),
+
 
                 // return 2
                 new InstantCommand(() -> Mosby.intake.setPower(1)),
@@ -91,6 +92,8 @@ public class FarBlue extends CommandOpMode {
                 Mosby.shootWithIntake(),
                 Mosby.reset(),
 
+                new InstantCommand(() ->Mosby.shooter.autoPower(false,false)),
+                new InstantCommand(() ->Mosby.turretOff()),
                 // turn everything off
                 new FollowPathCommand(Mosby.drivetrain.follower, paths.park34)
 

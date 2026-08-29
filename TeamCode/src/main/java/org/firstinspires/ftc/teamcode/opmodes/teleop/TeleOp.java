@@ -17,7 +17,8 @@ import org.firstinspires.ftc.teamcode.utils.Storage;
 @Configurable
 public class TeleOp extends CommandOpMode {
 
-    public static double increment = 0.0875;
+    public static double increment = Math.toRadians(1);
+
 
     @Override
     public void initialize() {
@@ -45,6 +46,7 @@ public class TeleOp extends CommandOpMode {
                 .whenPressed(new InstantCommand(() -> {
                     Mosby.reset1();
                 }) );
+
         rishi.getGamepadButton(GamepadKeys.Button.B)//circle
                 .whenPressed(new InstantCommand(() -> {
                     if(Storage.alliance == Mosby.Alliance.BLUE || Storage.alliance == Mosby.Alliance.BLUESQ) {
@@ -58,20 +60,26 @@ public class TeleOp extends CommandOpMode {
                         Storage.pose = r;
                     }
                 }) );
+        /**
+        rishi.getGamepadButton(GamepadKeys.Button.B)
+                .whenPressed(new InstantCommand(() ->
+                        Mosby.drivetrain.relocalizeFromLimelight()));
+
+    **/
 
 
 
-
-        aaryan.getGamepadButton(GamepadKeys.Button.DPAD_RIGHT).whenPressed(new InstantCommand(() -> {
+        rishi.getGamepadButton(GamepadKeys.Button.DPAD_RIGHT).whenPressed(new InstantCommand(() -> {
             double pos = Mosby.turret.controller.getSetPoint();
             Mosby.turret.homePos = pos - increment;
         }));
 
-        aaryan.getGamepadButton(GamepadKeys.Button.DPAD_LEFT).whenPressed(new InstantCommand(() -> {
+        rishi.getGamepadButton(GamepadKeys.Button.DPAD_LEFT).whenPressed(new InstantCommand(() -> {
             double pos = Mosby.turret.controller.getSetPoint();
             Mosby.turret.homePos = pos + increment;
         }));
         // Redundant shooter stop: persist a zero-RPM idle target and cut power immediately.
+        /**
         rishi.getGamepadButton(GamepadKeys.Button.DPAD_DOWN).whenPressed(new InstantCommand(() -> {
             Mosby.shooter.runIdle(0);
             Mosby.shooter.closeStopper();
@@ -85,11 +93,13 @@ public class TeleOp extends CommandOpMode {
             Mosby.shooter.runBusinessMode(3300, 0.22);
         }));
 
+
         rishi.getGamepadButton(GamepadKeys.Button.DPAD_RIGHT).whenPressed(new InstantCommand(() -> {
             Mosby.turret.enableAim = false;
             Mosby.turret.AUTOenableAim = false;
             Mosby.shooter.runBusinessMode(4000, 0.30);
         }));
+         **/
 
         aaryan.getGamepadButton(GamepadKeys.Button.SHARE).whenPressed(new InstantCommand(() -> {
             Mosby.init(hardwareMap, Mosby.MatchState.TELEOP, Storage.alliance);
@@ -111,7 +121,7 @@ public class TeleOp extends CommandOpMode {
         Mosby.intake.setPower(intakePower);
 
 
-
+        Mosby.drivetrain.addLimelightTelemetry(telemetry);
         telemetry.addData("error", Mosby.shooter.controller.getPositionError());
         telemetry.addData("position", Mosby.drivetrain.follower.getPose().getX());
         telemetry.addData("position", Mosby.drivetrain.follower.getPose().getY());
